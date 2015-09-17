@@ -1,23 +1,22 @@
 class Game
 
+  attr_reader :player1,
+              :player2,
+              :current_player
+
   PLAYER_MARKS = {
     player1: 'X',
     player2: 'O'
   }
 
-  def initialize
+  def initialize(name_player1, name_player2)
+    @current_player = :player1
+    @player1 = { player1: { mark: PLAYER_MARKS[:player1], name: name_player1 } }
+    @player2 = { player2: { mark: PLAYER_MARKS[:player2], name: name_player2 } }
+
     @game_array = [ [nil, nil, nil],
                     [nil, nil, nil],
                     [nil, nil, nil] ]
-  end
-
-  def start(player1, player2)
-    @current_player = :player1
-
-    { current_player: @current_player,
-      player1: { mark: PLAYER_MARKS[:player1], name: player1 },
-      player2: { mark: PLAYER_MARKS[:player2], name: player2 }
-    }
   end
 
   def pick(current_player, x, y)

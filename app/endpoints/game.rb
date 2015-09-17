@@ -20,10 +20,14 @@ end
 post '/game/create' do
   content_type :json
 
-  game = Game.new
+  game = Game.new(params[:player1], params[:player2])
+
+  body = { current_player: game.current_player }.
+    merge(game.player1).
+    merge(game.player2)
 
   response.status = 201
-  response.body = game.start(params[:player1], params[:player2]).to_json
+  response.body = body.to_json
 end
 
 #    {
