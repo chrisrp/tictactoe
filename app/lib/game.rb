@@ -1,5 +1,6 @@
+#
+# class game
 class Game
-
   attr_reader :player1,
               :player2,
               :current_player
@@ -14,13 +15,13 @@ class Game
     @player1 = { player1: { mark: PLAYER_MARKS[:player1], name: name_player1 } }
     @player2 = { player2: { mark: PLAYER_MARKS[:player2], name: name_player2 } }
 
-    @game_array = [ [nil, nil, nil],
-                    [nil, nil, nil],
-                    [nil, nil, nil] ]
+    @game_array = [[nil, nil, nil],
+                   [nil, nil, nil],
+                   [nil, nil, nil]]
   end
 
   def pick(current_player, x, y)
-    raise InvalidPickException.new unless valid_pick?(x, y) &&
+    fail InvalidPickException.new('Invalid pick') unless valid_pick?(x, y) &&
                                           valid_player?(current_player)
 
     @game_array[x][y] = PLAYER_MARKS[current_player.to_sym]
@@ -54,9 +55,9 @@ class Game
 
   def winner_mark
     winner_mark = check_columns ||
-      check_rows ||
-      check_left_diagonal ||
-      check_right_diagonal
+                  check_rows ||
+                  check_left_diagonal ||
+                  check_right_diagonal
 
     winner_mark
   end
@@ -64,8 +65,8 @@ class Game
   def check_columns
     for column in 0..2
       if @game_array[0][column] == @game_array[1][column] &&
-        @game_array[0][column] == @game_array[2][column] &&
-        @game_array[0][column] != nil
+         @game_array[0][column] == @game_array[2][column] &&
+         !@game_array[0][column].nil?
 
         result = @game_array[0][column]
       end
@@ -77,8 +78,8 @@ class Game
   def check_rows
     for row in 0..2
       if @game_array[row][0] == @game_array[row][1] &&
-        @game_array[row][0] == @game_array[row][2] &&
-        @game_array[row][0] != nil
+         @game_array[row][0] == @game_array[row][2] &&
+         !@game_array[row][0].nil?
 
         result = @game_array[row][0]
       end
@@ -89,8 +90,8 @@ class Game
 
   def check_right_diagonal
     if @game_array[0][2] == @game_array[1][1] &&
-      @game_array[0][2] == @game_array[2][0] &&
-      @game_array[0][2] != nil
+       @game_array[0][2] == @game_array[2][0] &&
+       !@game_array[0][2].nil?
 
       @game_array[0][2]
     end
@@ -98,11 +99,10 @@ class Game
 
   def check_left_diagonal
     if @game_array[0][0] == @game_array[1][1] &&
-      @game_array[0][0] == @game_array[2][2] &&
-      @game_array[0][0] != nil
+       @game_array[0][0] == @game_array[2][2] &&
+       !@game_array[0][0].nil?
 
       @game_array[0][0]
     end
   end
-
 end

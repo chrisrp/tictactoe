@@ -68,7 +68,6 @@ RSpec.describe 'Game' do
       it { expect(last_response.status).to eq 422 }
     end
 
-
     context 'when player 1 wins in column 0' do
       before do
         post '/game/pick', { current_player: 'player1', x: 0, y: 0 }.to_json
@@ -109,5 +108,4 @@ RSpec.describe 'Game' do
       it { expect(response['winner']).to eq('player2') }
     end
   end
-
 end

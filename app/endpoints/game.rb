@@ -1,6 +1,6 @@
 game = nil
 
-before  do
+before do
   if request.request_method == 'POST'
     params.merge!(JSON.parse(request.body.read))
   end
@@ -22,9 +22,8 @@ post '/game/create' do
 
   game = Game.new(params[:player1], params[:player2])
 
-  body = { current_player: game.current_player }.
-    merge(game.player1).
-    merge(game.player2)
+  body = { current_player: game.current_player }.merge(game.player1)
+                                                .merge(game.player2)
 
   response.status = 201
   response.body = body.to_json
@@ -46,4 +45,3 @@ post '/game/pick' do
   response.status = 200
   response.body = game.current_state.to_json
 end
-

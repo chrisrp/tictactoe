@@ -2,14 +2,21 @@ GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.3.8)
+    ast (2.1.0)
+    astrolabe (1.3.1)
+      parser (~> 2.2)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
+    parser (2.2.2.6)
+      ast (>= 1.1, < 3.0)
+    powerpack (0.1.1)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    rainbow (2.0.0)
     rake (10.4.2)
     rspec (3.3.0)
       rspec-core (~> 3.3.0)
@@ -24,6 +31,13 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.3.0)
     rspec-support (3.3.0)
+    rubocop (0.34.1)
+      astrolabe (~> 1.3)
+      parser (>= 2.2.2.5, < 3.0)
+      powerpack (~> 0.1)
+      rainbow (>= 1.99.1, < 3.0)
+      ruby-progressbar (~> 1.4)
+    ruby-progressbar (1.7.5)
     safe_yaml (1.0.4)
     sinatra (1.4.6)
       rack (~> 1.4)
@@ -41,5 +55,9 @@ DEPENDENCIES
   rack-test
   rake
   rspec (~> 3.3.0)
+  rubocop
   sinatra
   webmock
+
+BUNDLED WITH
+   1.10.4
