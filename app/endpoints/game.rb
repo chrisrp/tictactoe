@@ -39,11 +39,11 @@ end
 post '/game/pick' do
   content_type :json
 
-  state = game.pick(params[:current_player],
-                    params[:x],
-                    params[:y])
+  game.pick(params[:current_player],
+            params[:x],
+            params[:y])
 
-    response.status = 200
-    response.body = state.to_json
+  response.status = 200
+  response.body = game.current_state.to_json
 end
 

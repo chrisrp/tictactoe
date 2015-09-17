@@ -30,76 +30,79 @@ class Game
                       else
                         :player1
                       end
+  end
 
-    mark = any_winner?
+  def current_state
+    mark = winner_mark
     if mark
       { winner: PLAYER_MARKS.key(mark) }
     else
-      current_state
+      { current_state: @game_array,
+        current_player: @current_player }
     end
   end
 
   private
 
-  def any_winner?
-    mark = nil
+  def valid_player?(current_player)
+    @current_player == current_player.to_sym
+  end
 
-    # find columns
+  def valid_pick?(x, y)
+    @game_array[x][y] == nil
+  end
+
+  def winner_mark
+    winner_mark = check_columns ||
+      check_rows ||
+      check_left_diagonal ||
+      check_right_diagonal
+
+    winner_mark
+  end
+
+  def check_columns
     for column in 0..2
       if @game_array[0][column] == @game_array[1][column] &&
         @game_array[0][column] == @game_array[2][column] &&
         @game_array[0][column] != nil
 
-        mark = @game_array[0][column]
+        result = @game_array[0][column]
       end
     end
 
-    return mark if mark
-
-    # find rows
-    for row in 0..2
-      if @game_array[row][0] == @game_array[row][1] &&
-         @game_array[row][0] == @game_array[row][2] &&
-         @game_array[row][0] != nil
-
-        mark = @game_array[row][0]
-      end
-    end
-
-    return mark if mark
-
-    # diagonal left to right
-    if @game_array[0][0] == @game_array[1][1] &&
-       @game_array[0][0] == @game_array[2][2] &&
-       @game_array[0][0] != nil
-
-      mark = @game_array[0][0]
-    end
-
-    return mark if mark
-
-    # diagonal right to left
-    if @game_array[0][2] == @game_array[1][1] &&
-       @game_array[0][2] == @game_array[2][0] &&
-       @game_array[0][2] != nil
-
-      mark = @game_array[0][2]
-    end
-
-    mark
+    result
   end
 
-    def valid_player?(current_player)
-      @current_player == current_player.to_sym
-    end
+  def check_rows
+    for row in 0..2
+      if @game_array[row][0] == @game_array[row][1] &&
+        @game_array[row][0] == @game_array[row][2] &&
+        @game_array[row][0] != nil
 
-    def valid_pick?(x, y)
-      @game_array[x][y] == nil
+        result = @game_array[row][0]
+      end
     end
+    result
+  end
 
-    def current_state
-        { current_state: @game_array,
-          current_player: @current_player
-        }
+
+  def check_right_diagonal
+    if @game_array[0][2] == @game_array[1][1] &&
+      @game_array[0][2] == @game_array[2][0] &&
+      @game_array[0][2] != nil
+
+      @game_array[0][2]
     end
+  end
+
+  def check_left_diagonal
+    if @game_array[0][0] == @game_array[1][1] &&
+      @game_array[0][0] == @game_array[2][2] &&
+      @game_array[0][0] != nil
+
+      @game_array[0][0]
+    end
+  end
+
 end
