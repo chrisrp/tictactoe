@@ -21,6 +21,9 @@ class Game
   end
 
   def pick(current_player, x, y)
+    raise InvalidPickException.new unless valid_pick?(x, y) &&
+                                          valid_player?(current_player)
+
     @game_array[x][y] = PLAYER_MARKS[current_player.to_sym]
 
     @current_player = if @current_player == :player1
@@ -28,10 +31,19 @@ class Game
                       else
                         :player1
                       end
+
     current_state
   end
 
   private
+
+    def valid_player?(current_player)
+      @current_player == current_player.to_sym
+    end
+
+    def valid_pick?(x, y)
+      @game_array[x][y] == nil
+    end
 
     def current_state
       { current_state: @game_array,

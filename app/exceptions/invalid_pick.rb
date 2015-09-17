@@ -1,0 +1,1 @@
+InvalidPickException = Class.new(StandardError)
