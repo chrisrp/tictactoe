@@ -34,7 +34,6 @@ RSpec.describe 'Game' do
         expect(response['current_state'][0][0]).to eq('X')
         expect(response['current_player']).to eq('player2')
       end
-
     end
 
     context 'when player 2 makes a possible choice' do
@@ -67,6 +66,47 @@ RSpec.describe 'Game' do
       end
 
       it { expect(last_response.status).to eq 422 }
+    end
+
+
+    context 'when player 1 wins in column 0' do
+      before do
+        post '/game/pick', { current_player: 'player1', x: 0, y: 0 }.to_json
+        post '/game/pick', { current_player: 'player2', x: 0, y: 1 }.to_json
+        post '/game/pick', { current_player: 'player1', x: 1, y: 0 }.to_json
+        post '/game/pick', { current_player: 'player2', x: 0, y: 2 }.to_json
+        post '/game/pick', { current_player: 'player1', x: 2, y: 0 }.to_json
+      end
+
+      it { expect(last_response.status).to eq 200 }
+      it { expect(response['winner']).to eq('player1') }
+    end
+
+    context 'when player 1 wins in row 0' do
+      before do
+        post '/game/pick', { current_player: 'player1', x: 0, y: 0 }.to_json
+        post '/game/pick', { current_player: 'player2', x: 1, y: 1 }.to_json
+        post '/game/pick', { current_player: 'player1', x: 0, y: 1 }.to_json
+        post '/game/pick', { current_player: 'player2', x: 2, y: 2 }.to_json
+        post '/game/pick', { current_player: 'player1', x: 0, y: 2 }.to_json
+      end
+
+      it { expect(last_response.status).to eq 200 }
+      it { expect(response['winner']).to eq('player1') }
+    end
+
+    context 'when player 2 wins in diagonal' do
+      before do
+        post '/game/pick', { current_player: 'player1', x: 0, y: 1 }.to_json
+        post '/game/pick', { current_player: 'player2', x: 0, y: 0 }.to_json
+        post '/game/pick', { current_player: 'player1', x: 0, y: 2 }.to_json
+        post '/game/pick', { current_player: 'player2', x: 1, y: 1 }.to_json
+        post '/game/pick', { current_player: 'player1', x: 1, y: 2 }.to_json
+        post '/game/pick', { current_player: 'player2', x: 2, y: 2 }.to_json
+      end
+
+      it { expect(last_response.status).to eq 200 }
+      it { expect(response['winner']).to eq('player2') }
     end
   end
 
