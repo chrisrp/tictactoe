@@ -3,6 +3,16 @@
     <title>Tic Tac Toe</title>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
     <script src="/scripts/app.js"></script>
+    <style>
+      table input[type='button'] {
+        width: 100%;
+        height: 100%;
+      }
+
+      table td {
+        width: 80px;
+        height: 80px;
+    </style>
   </head>
   <body  ng-controller="GameController as gameCtrl">
 
@@ -15,45 +25,72 @@
       {{ gameCtrl.p2.mark }}
 
       <BR />
-      <input type='button' id='sender' value='start game' ng-click='gameCtrl.start()'>
+      <input type='button' id='sender' value='start game' ng-click='gameCtrl.start()' >
 
-  <h1>{{ "current player: " + gameCtrl.currentPlayer }}</h1>
+    <h1>{{ "current player: " + gameCtrl.currentPlayer }}</h1>
+    <h1 ng-if"gameCtrl.winner">{{ "winner is: " + gameCtrl.winner }}</h1>
 
     <table border='1' width='80%' align='center'>
       <tr> 
-        <td  width='100' height='100' ng-click='pick(0,0)'>
-           <input type='button' value='{{ gameCtrl.state[0][0] }}' ng-click='gameCtrl.pick(0,0)' style='width:100%; height:100%;'>
+        <td>
+           <input type='button' 
+             ng-disabled='gameCtrl.state[0][0]' 
+             value='{{ gameCtrl.state[0][0] }}' 
+             ng-click='gameCtrl.pick(0,0)' >
         </td>
-        <td  width='100' height='100'>
-           <input type='button' value='{{ gameCtrl.state[0][1] }}' ng-click='gameCtrl.pick(0,1)' style='width:100%; height:100%;'>
-        <td  width='100' height='100'>
-           <input type='button' value='{{ gameCtrl.state[0][2] }}' ng-click='gameCtrl.pick(0,2)' style='width:100%; height:100%;'>
-        </td>
-      </tr>
-      <tr> 
-        <td  width='100' height='100'>
-           <input type='button' value='{{ gameCtrl.state[1][0] }}' ng-click='gameCtrl.pick(1,0)' style='width:100%; height:100%;'>
-        </td>
-        <td  width='100' height='100'>
-           <input type='button' value='{{ gameCtrl.state[1][1] }}' ng-click='gameCtrl.pick(1,1)' style='width:100%; height:100%;'>
-        </td>
-        <td  width='100' height='100'>
-           <input type='button' value='{{ gameCtrl.state[1][2] }}' ng-click='gameCtrl.pick(1,2)' style='width:100%; height:100%;'>
+        <td >
+           <input type='button' 
+             ng-disabled='gameCtrl.state[0][1]' 
+             value='{{ gameCtrl.state[0][1] }}' 
+             ng-click='gameCtrl.pick(0,1)' >
+        <td>
+           <input type='button' 
+             ng-disabled='gameCtrl.state[0][2]' 
+             value='{{ gameCtrl.state[0][2] }}' 
+             ng-click='gameCtrl.pick(0,2)' >
         </td>
       </tr>
       <tr> 
-        <td  width='100' height='100'>
-           <input type='button' value='{{ gameCtrl.state[2][0] }}' ng-click='gameCtrl.pick(2,0)' style='width:100%; height:100%;'>
+        <td>
+           <input type='button' 
+             ng-disabled='gameCtrl.state[1][0]' 
+             value='{{ gameCtrl.state[1][0] }}' 
+             ng-click='gameCtrl.pick(1,0)' >
         </td>
-        <td  width='100' height='100'>
-           <input type='button' value='{{ gameCtrl.state[2][1] }}' ng-click='gameCtrl.pick(2,1)' style='width:100%; height:100%;'>
+        <td>
+           <input type='button' 
+             ng-disabled='gameCtrl.state[1][1]' 
+             value='{{ gameCtrl.state[1][1] }}' 
+             ng-click='gameCtrl.pick(1,1)' >
         </td>
-        <td  width='100' height='100'>
-           <input type='button' value='{{ gameCtrl.state[2][2] }}' ng-click='gameCtrl.pick(2,2)' style='width:100%; height:100%;'>
+        <td>
+           <input type='button' 
+             ng-disabled='gameCtrl.state[1][2]' 
+             value='{{ gameCtrl.state[1][2] }}' 
+             ng-click='gameCtrl.pick(1,2)' >
+        </td>
+      </tr>
+      <tr> 
+        <td>
+           <input type='button' 
+             ng-disabled='gameCtrl.state[2][0]' 
+             value='{{ gameCtrl.state[2][0] }}' 
+             ng-click='gameCtrl.pick(2,0)' >
+        </td>
+        <td>
+           <input type='button' 
+             ng-disabled='gameCtrl.state[2][1]' 
+             value='{{ gameCtrl.state[2][1] }}' 
+             ng-click='gameCtrl.pick(2,1)' >
+        </td>
+        <td>
+           <input type='button' 
+             ng-disabled='gameCtrl.state[2][2]' 
+             value='{{ gameCtrl.state[2][2] }}' 
+             ng-click='gameCtrl.pick(2,2)' >
         </td>
       </tr>
     </table>
 
-    <h1>{{ gameCtrl.winner }}
   </body>
 </html>

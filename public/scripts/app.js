@@ -10,7 +10,7 @@
   for (i = 0; i < 3; i++) {
     mainArray[i]= new Array();
     for (j = 0; j < 3; j++) {
-      mainArray[i][j] = 'lalala';
+      mainArray[i][j] = '';
     }
   }
 
@@ -59,12 +59,6 @@
       });
     };
 
-    //a scope function to load the data.
-    $scope.loadData = function () {
-      $http.get('/Your/Sinatra/Route').success(function(data) {
-        $scope.items = data;
-      });
-    };
   });
 
 })();
