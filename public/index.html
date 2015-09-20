@@ -1,47 +1,56 @@
-<html>
+<html ng-app="tictactoeGame">
   <head>
     <title>Tic Tac Toe</title>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
     <script src="/scripts/app.js"></script>
   </head>
-  <body>
+  <body  ng-controller="GameController as game">
 
-    <input type='text' id='player1'><BR>
-    <input type='text' id='player2'>
-    <input type='button' id='sender' value='start game'>
+      <label for='p1'>Player 1</label>
+      <input type='text' id='p1' ng-model="game.p1.name">
+      {{ game.p1.mark }}
+      <BR />
+      <label for='p2'>Player 2</label>
+      <input type='text' id='p2' ng-model="game.p2.name">
+      {{ game.p2.mark }}
+
+      <BR />
+      <input type='button' id='sender' value='start game' ng-click='game.start()'>
+
+  <h1>{{ game.current_player }}</h1>
 
     <table border='1' width='80%' align='center'>
       <tr> 
-        <td>
-          0,0
+        <td  width='100' height='100' ng-click='pick(0,0)'>
+           <input type='button' value='{{ game.state[0][0] }}' ng-click='game.pick(0,0)' style='width:100%; heigth:100%;'>
         </td>
-        <td>
-          0,1
-        </td>
-        <td>
-          0,2
-        </td>
-      </tr>
-      <tr> 
-        <td>
-          1,0
-        </td>
-        <td>
-          1,1
-        </td>
-        <td>
-          1,2
+        <td  width='100' height='100'>
+          {{ game.state[0][1] }}
+        <td  width='100' height='100'>
+          {{ game.state[0][2] }}
         </td>
       </tr>
       <tr> 
-        <td>
-          2,0
+        <td  width='100' height='100'>
+          <div style='height:100%; width:100%;'></div>
+          {{ game.state[1][0] }}
         </td>
-        <td>
-          2,1
+        <td  width='100' height='100'>
+          {{ game.state[1][1] }}
         </td>
-        <td>
-          2,2
+        <td  width='100' height='100'>
+          {{ game.state[1][2] }}
+        </td>
+      </tr>
+      <tr> 
+        <td  width='100' height='100'>
+          {{ game.state[2][0] }}
+        </td>
+        <td  width='100' height='100'>
+          {{ game.state[2][1] }}
+        </td>
+        <td  width='100' height='100'>
+          {{ game.state[2][2] }}
         </td>
       </tr>
     </table>

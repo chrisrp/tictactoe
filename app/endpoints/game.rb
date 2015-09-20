@@ -10,20 +10,38 @@ error InvalidPickException do
   halt 422, { error: 'invalid pick' }.to_json
 end
 
+##
+# GET /game/create - Creates a game instance
 #
+# ## Parameters
 #
-#    {
-#      "player1": "foo",
-#      "player2": "bar"
-#    }
+#   player1 [String] Name of the player1
+#   player2 [String] Name of the player2
 #
+# ## Example
+#
+#   {
+#     "player1": "foo",
+#     "player2": "bar"
+#   }
+#
+# ## Response Code
+#
+#   200
+#
+# ## Response Body
+#  {
+#    current_player": "player1",
+#    "player1": {"mark":"X","name":"foo"},
+#    "player2": {"mark":"O","name":"bar"}
+#  }
 post '/game/create' do
   content_type :json
 
   game = Game.new(params[:player1], params[:player2])
 
   body = { current_player: game.current_player }.merge(game.player1)
-                                                .merge(game.player2)
+  .merge(game.player2)
 
   response.status = 201
   response.body = body.to_json

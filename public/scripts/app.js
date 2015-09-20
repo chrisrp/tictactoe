@@ -1,11 +1,53 @@
-var app = angular.module('myApp', []);
+(function(){
+  var app = angular.module('tictactoeGame', []);
 
-//add a controller to it
-app.controller('MyCtrl', function($scope, $http) {
-  //a scope function to load the data.
-  $scope.loadData = function () {
-    $http.get('/Your/Sinatra/Route').success(function(data) {
-      $scope.items = data;
-    });
-  };
-});
+  var player1 = { name: '', mark: '' };
+  var player2 = { name: '', mark: '' };
+  var currentPlayer;
+
+  var mainArray = new Array();
+
+  for (i = 0; i < 3; i++) {
+     mainArray[i]= new Array();
+      for (j = 0; j < 3; j++) {
+          mainArray[i][j] = 'lalala';
+      }
+  }
+  
+  //add a controller to it
+  app.controller('GameController', function($scope, $http) {
+
+    this.p1 = player1;
+    this.p2 = player2;
+
+    this.state = mainArray;
+
+    gameController = this;
+
+    this.start = function(){
+      var req = {
+        method: 'POST',
+        url: '/game/create',
+        data: { "player1": player1.name, "player2": player2.name }
+      };
+
+      $http(req).then(function(response){
+        currentPlayer = response.data.current_player;
+        gameController.p1 = response.data.player1;
+        gameController.p2 = response.data.player2;
+      });
+    };
+
+    this.pick = function(x, y){
+      console.log(x);
+      console.log(y);
+    };
+    //a scope function to load the data.
+    $scope.loadData = function () {
+      $http.get('/Your/Sinatra/Route').success(function(data) {
+        $scope.items = data;
+      });
+    };
+  });
+
+})();
