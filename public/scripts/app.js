@@ -8,17 +8,19 @@
   var mainArray = new Array();
 
   for (i = 0; i < 3; i++) {
-     mainArray[i]= new Array();
-      for (j = 0; j < 3; j++) {
-          mainArray[i][j] = 'lalala';
-      }
+    mainArray[i]= new Array();
+    for (j = 0; j < 3; j++) {
+      mainArray[i][j] = 'lalala';
+    }
   }
-  
+
   //add a controller to it
   app.controller('GameController', function($scope, $http) {
 
+    this.winner = '';
     this.p1 = player1;
     this.p2 = player2;
+    this.currentPlayer = currentPlayer;
 
     this.state = mainArray;
 
@@ -32,16 +34,31 @@
       };
 
       $http(req).then(function(response){
-        currentPlayer = response.data.current_player;
+        gameController.currentPlayer = response.data.current_player;
         gameController.p1 = response.data.player1;
         gameController.p2 = response.data.player2;
       });
     };
 
     this.pick = function(x, y){
-      console.log(x);
-      console.log(y);
+      var req = {
+        method: 'POST',
+        url: '/game/pick',
+        data: { "current_player": gameController.currentPlayer,
+                "x": x,
+                "y": y }
+      };
+
+      $http(req).then(function(response){
+        if (response.data.winner)
+          gameController.winner = response.data.winner;
+        else {
+          gameController.currentPlayer = response.data.current_player;
+          gameController.state = response.data.current_state;
+        }
+      });
     };
+
     //a scope function to load the data.
     $scope.loadData = function () {
       $http.get('/Your/Sinatra/Route').success(function(data) {

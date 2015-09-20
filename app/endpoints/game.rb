@@ -11,12 +11,12 @@ error InvalidPickException do
 end
 
 ##
-# GET /game/create - Creates a game instance
+# POST /game/create - Endpoint to create a game instance
 #
 # ## Parameters
 #
-#   player1 [String] Name of the player1
-#   player2 [String] Name of the player2
+#   player1 [String] Name for the player1
+#   player2 [String] Name for the player2
 #
 # ## Example
 #
@@ -30,14 +30,14 @@ end
 #   200
 #
 # ## Response Body
+#
 #  {
 #    current_player": "player1",
 #    "player1": {"mark":"X","name":"foo"},
 #    "player2": {"mark":"O","name":"bar"}
 #  }
-post '/game/create' do
-  content_type :json
-
+#
+post '/game/create', provides: :json do
   game = Game.new(params[:player1], params[:player2])
 
   body = { current_player: game.current_player }.merge(game.player1)
@@ -47,19 +47,48 @@ post '/game/create' do
   response.body = body.to_json
 end
 
-#    {
-#      "current_player": "player1",
-#      "x": 0,
-#      "y": 0
-#    }
-#
-post '/game/pick' do
-  content_type :json
 
+##
+# POST /game/pick - Endpoint to register players picks
+#
+# ## Parameters
+#
+#   current_player [String]  Player picking position
+#   x              [Integer] x position
+#   y              [Integer] y position
+#
+# ## Json example
+#
+#  {
+#    "current_player": "player1",
+#    "x": 0,
+#    "y": 0
+#  }
+#
+# ## Response Code
+#
+#   200 OK
+#   422 Unprocessable - Format is correct but coordinate or current_player are invalid
+#
+# ## Response Body
+#
+#   {
+#     "current_player": "player1",
+#     "current_state": [['X', nil, 'X'],
+#                       [nil, 'O', nil],
+#                       [nil, nil, nil]]
+#   }
+#
+#   OR
+#
+#   { "winner": "player1" }
+#
+#   if theres a winner
+#
+post '/game/pick', provides: :json do
   game.pick(params[:current_player],
             params[:x],
             params[:y])
 
-  response.status = 200
   response.body = game.current_state.to_json
 end
