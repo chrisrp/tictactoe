@@ -1,6 +1,6 @@
 #
 # class game
-class Game
+class GameEngine
   attr_reader :player1,
               :player2,
               :current_player

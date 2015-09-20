@@ -6,10 +6,6 @@ before do
   end
 end
 
-error InvalidPickException do
-  halt 422, { error: 'invalid pick' }.to_json
-end
-
 ##
 # POST /game/create - Endpoint to create a game instance
 #
@@ -38,7 +34,7 @@ end
 #  }
 #
 post '/game/create', provides: :json do
-  game = Game.new(params[:player1], params[:player2])
+  game = GameEngine.new(params[:player1], params[:player2])
 
   body = { current_player: game.current_player }.merge(game.player1)
   .merge(game.player2)
