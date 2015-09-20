@@ -36,8 +36,8 @@ end
 post '/game/create', provides: :json do
   game = GameEngine.new(params[:player1], params[:player2])
 
-  body = { current_player: game.current_player }.merge(game.player1)
-  .merge(game.player2)
+  body = { current_player: game.current_player }.merge(game.player1.to_hash)
+  .merge(game.player2.to_hash)
 
   response.status = 201
   response.body = body.to_json

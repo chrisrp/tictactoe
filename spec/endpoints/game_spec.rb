@@ -88,7 +88,7 @@ RSpec.describe 'Game' do
       end
 
       it { expect(last_response.status).to eq 200 }
-      it { expect(response['winner']).to eq('player1') }
+      it { expect(response['winner']).to eq('foo') }
     end
 
     context 'when player 1 wins in row 0' do
@@ -101,7 +101,7 @@ RSpec.describe 'Game' do
       end
 
       it { expect(last_response.status).to eq 200 }
-      it { expect(response['winner']).to eq('player1') }
+      it { expect(response['winner']).to eq('foo') }
     end
 
     context 'when player 2 wins in diagonal' do
@@ -115,7 +115,7 @@ RSpec.describe 'Game' do
       end
 
       it { expect(last_response.status).to eq 200 }
-      it { expect(response['winner']).to eq('player2') }
+      it { expect(response['winner']).to eq('bar') }
       it { expect(response['current_state']).to be_a(Array) }
     end
   end

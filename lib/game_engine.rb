@@ -20,8 +20,8 @@ class GameEngine
   #
   def initialize(name_player1, name_player2)
     @current_player = :player1
-    @player1 = { player1: { mark: PLAYER_MARKS[:player1], name: name_player1 } }
-    @player2 = { player2: { mark: PLAYER_MARKS[:player2], name: name_player2 } }
+    @player1 = Player.new(name_player1, PLAYER_MARKS[:player1], 1)
+    @player2 = Player.new(name_player2, PLAYER_MARKS[:player2], 2)
 
     @game_array = [[nil, nil, nil],
                    [nil, nil, nil],
@@ -65,12 +65,29 @@ class GameEngine
                current_player: @current_player }
 
     mark = winner_mark
-    result.merge!(winner: PLAYER_MARKS.key(mark)) if mark
+
+    if mark
+      result.merge!(winner: player_by_mark(mark).name)
+    end
+
 
     result
   end
 
   private
+
+  ##
+  # Gets player based on his mark
+  #
+  def player_by_mark(mark)
+    player = if PLAYER_MARKS.key(mark) == :player1
+                @player1
+              else
+                @player2
+              end
+    player
+  end
+
 
   ##
   # Checks if the player is allowed to play
