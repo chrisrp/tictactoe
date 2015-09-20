@@ -14,7 +14,6 @@
     }
   }
 
-  //add a controller to it
   app.controller('GameController', function($scope, $http) {
 
     this.winner = '';
