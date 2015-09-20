@@ -5,23 +5,13 @@
   var player2 = { name: '', mark: '' };
   var currentPlayer;
 
-  var mainArray = new Array();
-
-  for (i = 0; i < 3; i++) {
-    mainArray[i]= new Array();
-    for (j = 0; j < 3; j++) {
-      mainArray[i][j] = '';
-    }
-  }
-
   app.controller('GameController', function($scope, $http) {
 
+    // controller attributes
     this.winner = '';
     this.p1 = player1;
     this.p2 = player2;
     this.currentPlayer = currentPlayer;
-
-    this.state = mainArray;
 
     gameController = this;
 
@@ -43,9 +33,10 @@
       var req = {
         method: 'POST',
         url: '/game/pick',
-        data: { "current_player": gameController.currentPlayer,
-                "x": x,
-                "y": y }
+        data: { 
+          "current_player": gameController.currentPlayer,
+          "x": x,
+          "y": y }
       };
 
       $http(req).then(function(response){

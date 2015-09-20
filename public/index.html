@@ -19,12 +19,15 @@
       <label for='p1'>Player 1</label>
       <input type='text' id='p1' ng-model="gameCtrl.p1.name">
       {{ gameCtrl.p1.mark }}
+
       <BR />
+
       <label for='p2'>Player 2</label>
       <input type='text' id='p2' ng-model="gameCtrl.p2.name">
       {{ gameCtrl.p2.mark }}
 
       <BR />
+
       <input type='button' id='sender' value='start game' ng-click='gameCtrl.start()' >
 
     <h1>{{ "current player: " + gameCtrl.currentPlayer }}</h1>
