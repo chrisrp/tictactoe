@@ -36,7 +36,8 @@ class Game
   def current_state
     mark = winner_mark
     if mark
-      { winner: PLAYER_MARKS.key(mark) }
+      { winner: PLAYER_MARKS.key(mark),
+        current_state: @game_array }
     else
       { current_state: @game_array,
         current_player: @current_player }

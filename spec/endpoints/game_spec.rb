@@ -106,6 +106,7 @@ RSpec.describe 'Game' do
 
       it { expect(last_response.status).to eq 200 }
       it { expect(response['winner']).to eq('player2') }
+      it { expect(response['current_state']).to be_a(Array) }
     end
   end
 end
