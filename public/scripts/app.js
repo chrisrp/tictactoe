@@ -8,7 +8,7 @@
   app.controller('GameController', function($scope, $http) {
 
     // controller attributes
-    this.winner = '';
+    this.winner = false;
     this.p1 = player1;
     this.p2 = player2;
     this.currentPlayer = currentPlayer;
