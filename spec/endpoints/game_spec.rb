@@ -50,7 +50,7 @@ RSpec.describe 'Game' do
       end
     end
 
-    context 'when player 2 makes a invalid choice' do
+    context 'when player 2 tries to play on coordinate already taken' do
       before do
         post '/game/pick', { current_player: 'player1', x: 0, y: 0 }.to_json
         post '/game/pick', { current_player: 'player2', x: 0, y: 0 }.to_json
@@ -58,6 +58,16 @@ RSpec.describe 'Game' do
 
       it { expect(last_response.status).to eq 422 }
     end
+
+    context 'when player 2 tries to play on invalid coordinate' do
+      before do
+        post '/game/pick', { current_player: 'player1', x: 0, y: 0 }.to_json
+        post '/game/pick', { current_player: 'player2', x: 6, y: 7 }.to_json
+      end
+
+      it { expect(last_response.status).to eq 422 }
+    end
+
 
     context 'when player 1 tries to play twice' do
       before do
