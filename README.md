@@ -6,7 +6,7 @@ Simple tic tac toe game.
 * Angular js frontend
 
 ## Getting started
-1. Clone this respository with: `git@github.com:chrisrp/tictactoe.git`
+1. Clone this respository with: `git clone git@github.com:chrisrp/tictactoe.git`
 2. Go to the new created directory: `cd tictactoe` 
 3. Install all dependencies: `bundle install`
 4. Start the server: `rackup`
