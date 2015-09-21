@@ -13,10 +13,9 @@ class GameEngine
   ##
   # Contstructor method
   #
-  # ## Parameters
-  #
-  #   name_player1 [String] Name for player 1
-  #   name_player2 [String] Name for player 2
+  # Parameters
+  #  String name_player1 - Name for player 1
+  #  String name_player2 - Name for player 2
   #
   def initialize(name_player1, name_player2)
     @current_player = :player1
@@ -31,13 +30,11 @@ class GameEngine
   ##
   # Represents the pick of some user and chosen coordinates
   #
-  # ## Parameters
+  #  String  player - Player picking a coordinate
+  #  Integer x      - X coordinate
+  #  Integer y      - Y coordinate
   #
-  #   player [String]  Player picking a coordinate
-  #   x      [Integer] X coordinate
-  #   y      [Integer] Y coordinate
-  #
-  # ## Exceptions
+  # Exceptions
   #
   #  Throws InvalidPickException if player is not valid or if coordinate
   #  is out of boundaries
@@ -90,7 +87,7 @@ class GameEngine
 
 
   ##
-  # Checks if the player is allowed to play
+  # Checks if the player passed is allowed to play
   #
   def valid_player?(player)
     @current_player == player.to_sym
