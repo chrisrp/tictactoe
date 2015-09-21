@@ -44,8 +44,9 @@
           gameController.winner = response.data.winner;
         else {
           gameController.currentPlayer = response.data.current_player;
-          gameController.state = response.data.current_state;
         }
+
+        gameController.state = response.data.current_state;
       });
     };
 

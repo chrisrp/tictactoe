@@ -10,5 +10,5 @@ Simple tic tac toe game.
 2. Go to the new created directory: `cd tictactoe` 
 3. Install all dependencies: `bundle install`
 4. Start the server: `rackup`
-4. At your favorite browser access: http://localhost:9292/
+4. At your favorite browser access: `http://localhost:9292/index.html`
 5. Have fun!!
