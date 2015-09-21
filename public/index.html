@@ -4,15 +4,25 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
     <script src="/scripts/app.js"></script>
     <style>
-      table input[type='button'] {
-        width: 100%;
-        height: 100%;
-        display: block;
+      body {
+        font-family:arial;
       }
 
-      table td {
+      table tr td {
         width: 80px;
         height: 80px;
+      }
+
+      .btn {
+        display:block;
+        border:none;
+        width:100%;
+        height:100%;
+        font-family:arial;
+        font-size:60px;
+        color: black;
+        text-align:center;    
+      }
     </style>
   </head>
   <body  ng-controller="GameController as gameCtrl">
@@ -37,18 +47,19 @@
     <table border='1' width='80%' align='center'>
       <tr> 
         <td>
-           <input type='button' 
+           <input type='button' class='btn' 
              ng-disabled='gameCtrl.state[0][0]' 
              value='{{ gameCtrl.state[0][0] }}' 
+
              ng-click='gameCtrl.pick(0,0)' >
         </td>
         <td >
-           <input type='button' 
+           <input type='button' class='btn' 
              ng-disabled='gameCtrl.state[0][1]' 
              value='{{ gameCtrl.state[0][1] }}' 
              ng-click='gameCtrl.pick(0,1)' >
         <td>
-           <input type='button' 
+           <input type='button' class='btn' 
              ng-disabled='gameCtrl.state[0][2]' 
              value='{{ gameCtrl.state[0][2] }}' 
              ng-click='gameCtrl.pick(0,2)' >
@@ -56,19 +67,19 @@
       </tr>
       <tr> 
         <td>
-           <input type='button' 
+           <input type='button' class='btn' 
              ng-disabled='gameCtrl.state[1][0]' 
              value='{{ gameCtrl.state[1][0] }}' 
              ng-click='gameCtrl.pick(1,0)' >
         </td>
         <td>
-           <input type='button' 
+           <input type='button' class='btn' 
              ng-disabled='gameCtrl.state[1][1]' 
              value='{{ gameCtrl.state[1][1] }}' 
              ng-click='gameCtrl.pick(1,1)' >
         </td>
         <td>
-           <input type='button' 
+           <input type='button' class='btn' 
              ng-disabled='gameCtrl.state[1][2]' 
              value='{{ gameCtrl.state[1][2] }}' 
              ng-click='gameCtrl.pick(1,2)' >
@@ -76,19 +87,19 @@
       </tr>
       <tr> 
         <td>
-           <input type='button' 
+           <input type='button' class='btn' 
              ng-disabled='gameCtrl.state[2][0]' 
              value='{{ gameCtrl.state[2][0] }}' 
              ng-click='gameCtrl.pick(2,0)' >
         </td>
         <td>
-           <input type='button' 
+           <input type='button' class='btn' 
              ng-disabled='gameCtrl.state[2][1]' 
              value='{{ gameCtrl.state[2][1] }}' 
              ng-click='gameCtrl.pick(2,1)' >
         </td>
         <td>
-           <input type='button' 
+           <input type='button' class='btn' 
              ng-disabled='gameCtrl.state[2][2]' 
              value='{{ gameCtrl.state[2][2] }}' 
              ng-click='gameCtrl.pick(2,2)' >
