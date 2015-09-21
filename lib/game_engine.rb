@@ -98,7 +98,7 @@ class GameEngine
   #
   def valid_pick?(x, y)
     @game_array[x][y] == nil
-  rescue Exception
+  rescue
     fail InvalidPickException.new
   end
 
