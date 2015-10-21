@@ -3,10 +3,10 @@ require 'spec_helper'
 RSpec.describe 'Game' do
   let(:response) { JSON.parse(last_response.body) }
   before do
-    post '/game/create', { player1: 'foo', player2: 'bar' }.to_json
+    post '/game', { player1: 'foo', player2: 'bar' }.to_json
   end
 
-  describe 'POST /game/create' do
+  describe 'POST /game' do
     context 'when I create a game' do
       it { expect(last_response.status).to eq 201 }
       it { expect(response['current_player']).to eq 'player1' }

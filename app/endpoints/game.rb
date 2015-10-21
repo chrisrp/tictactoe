@@ -7,7 +7,7 @@ before do
 end
 
 ##
-# POST /game/create - Endpoint to create a game instance
+# POST /game - Endpoint to create a game instance
 #
 # ## Parameters
 #
@@ -33,7 +33,7 @@ end
 #    "player2": {"mark":"O","name":"bar"}
 #  }
 #
-post '/game/create', provides: :json do
+post '/game', provides: :json do
   game = GameEngine.new(params[:player1], params[:player2])
 
   body = { current_player: game.current_player }.merge(game.player1.to_hash)
