@@ -28,7 +28,7 @@
     this.start = function(){
       var req = {
         method: 'POST',
-        url: '/game/create',
+        url: '/game',
         data: { "player1": player1.name, "player2": player2.name }
       };
 
