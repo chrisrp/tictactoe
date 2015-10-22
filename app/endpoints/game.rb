@@ -1,11 +1,5 @@
 game = nil
 
-before do
-  if request.request_method == 'POST'
-    params.merge!(JSON.parse(request.body.read))
-  end
-end
-
 ##
 # POST /game - Endpoint to create a game instance
 #

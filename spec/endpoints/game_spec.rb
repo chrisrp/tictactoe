@@ -3,6 +3,7 @@ require 'spec_helper'
 RSpec.describe 'Game' do
   let(:response) { JSON.parse(last_response.body) }
   before do
+    header 'CONTENT_TYPE', 'application/json'
     post '/game', { player1: 'foo', player2: 'bar' }.to_json
   end
 

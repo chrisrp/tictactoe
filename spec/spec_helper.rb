@@ -5,7 +5,7 @@ require 'webmock/rspec'
 require File.expand_path(File.dirname(__FILE__) + '/../config/boot')
 
 def app
-  Sinatra::Application
+  Rack::Builder.parse_file('config.ru').first
 end
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration

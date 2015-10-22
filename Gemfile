@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'sinatra'
 gem 'rake'
+gem 'rack-contrib'
 
 group 'test' do
   gem 'rack-test'

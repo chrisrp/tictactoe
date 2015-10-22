@@ -1,3 +1,4 @@
+require 'rack/contrib'
 require 'sinatra'
 require 'json'
 require_relative '../app/exceptions/invalid_pick_exception'
